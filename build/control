@@ -5,4 +5,4 @@ Maintainer: $maintainer
 Architecture: all
 Date: $date
 Installed-Size: $size
-Description: A nice description.
+Description: This tool will migrate all of your configuration files, settings, themes, applications and favourite files from one installation to another with a few commands. Favourite of the Distro Hoppers!

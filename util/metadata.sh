@@ -8,7 +8,7 @@ print_help() {
   Options:
 $options
 
-  This script is a part of the [Name] project <https://github.com/username/repo>.
+  This script is a part of the Migrate project <https://github.com/HarshKhandeparkar/migrate>.
   Other scripts included in this package are `echo $(echo $scripts | sed "s/$script\,\s//")`.
   Type \"[script-name] -h\" to get more specific information.
    "
