@@ -1,4 +1,4 @@
-Package: name
+Package: migrate
 Version: $version
 Depends: curl
 Maintainer: $maintainer
