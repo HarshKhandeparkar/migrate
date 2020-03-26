@@ -1,0 +1,8 @@
+Package: name
+Version: $version
+Depends: curl
+Maintainer: $maintainer
+Architecture: all
+Date: $date
+Installed-Size: $size
+Description: A nice description.
