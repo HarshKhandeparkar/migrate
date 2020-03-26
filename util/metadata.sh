@@ -1,5 +1,5 @@
 version="v0.0.0"
-scripts="script_1" # separated by comma and a space
+scripts="migrate" # separated by comma and a space
 
 # The General Help Page of Any Script
 print_help() {

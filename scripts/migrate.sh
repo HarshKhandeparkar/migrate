@@ -8,12 +8,12 @@ source $dir/../util/metadata.sh
 source $dir/../util/log-error.sh
 #</external-scripts>#
 
-script="script_1"
-desc="This Script is the control script for the [Name] project."
+script="migrate"
+desc="This Script is the main script of the Migrate project."
 
 options="\
-    script_1 => Displays this help page.
-    script_1 -h/--help => Displays this help page.
+    migrate => Displays this help page.
+    migrate -h/--help => Displays this help page.
 "
 
 if [ "$1" != "" ];
