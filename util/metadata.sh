@@ -1,4 +1,4 @@
-version="v1.0.0"
+version="v0.0.0"
 scripts="script_1" # separated by comma and a space
 
 # The General Help Page of Any Script
