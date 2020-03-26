@@ -1,4 +1,4 @@
-version="v0.0.0"
+version="v0.1.0"
 scripts="migrate" # separated by comma and a space
 
 # The General Help Page of Any Script

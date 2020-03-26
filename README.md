@@ -1,4 +1,4 @@
-# Migrate v0.0.0
+# Migrate v0.1.0
 [![GitHub version](https://github-basic-badges.herokuapp.com/release/HarshKhandeparkar/migrate.svg)](https://github.com/HarshKhandeparkar/migrate/releases/latest)
  [![GitHub downloads](https://github-basic-badges.herokuapp.com/downloads/HarshKhandeparkar/migrate/total.svg)](https://github.com/HarshKhandeparkar/migrate/releases/latest)
 
