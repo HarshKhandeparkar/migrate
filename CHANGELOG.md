@@ -6,5 +6,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### Date Format: dd-mm-yyyy
 
-(Example Below)
-### [[v1.0.0](https://github.com/HarshKhandeparkr/migrate/releases/tag/v1.0.0)] - 26-03-2020
+### [[v0.0.0](https://github.com/HarshKhandeparkar/migrate/releases/tag/v0.0.0)] - 26-03-2020
+Initialized.
+
+### [[v0.1.0](https://github.com/HarshKhandeparkar/migrate/releases/tag/v0.1.0)] - 26-03-2020
+#### Added
+- Script `migrate`.
