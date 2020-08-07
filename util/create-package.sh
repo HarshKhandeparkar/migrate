@@ -17,16 +17,19 @@ create-package () {
 
   add-field 'version' 1
   
+  echo -ne "Enter any extra apt repositories/ppas that are required, separated by spaces(leave empty for none): "
+  read apt_repos
+  add-field "apt_repos" "\"$apt_repos\""
 
   echo -ne "What is the name of the migrate package?: "
   read name
   add-field "name" "\"$name\""
 
-  echo -ne "Type all the required apt packages, separated by spaces(leave empty for none): "
+  echo -ne "Enter all the required apt packages, separated by spaces(leave empty for none): "
   read apt_packages
   add-field "apt_packages" "\"$apt_packages\""
 
-  echo -ne "Type all the required snap packages, separated by spaces(leave empty for none): "
+  echo -ne "Enter all the required snap packages, separated by spaces(leave empty for none): "
   read snap_packages
   add-field "snap_packages" "\"$snap_packages\""
 
