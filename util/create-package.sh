@@ -77,4 +77,6 @@ create-package () {
   pushd $working_dir
   tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz .
   popd
+
+  rm -rf $working_dir
 }
