@@ -20,19 +20,19 @@ create-package () {
   add-field 'version' 1
 
   echo -ne "What is the name of the migrate package?: "
-  read name
+  read -e name
   add-field "name" "\"$name\""
 
   echo -ne "Enter any extra apt repositories/ppas that are required, separated by spaces(leave empty for none): "
-  read apt_repos
+  read -e apt_repos
   add-field "apt_repos" "\"$apt_repos\""
 
   echo -ne "Enter all the required apt packages, separated by spaces(leave empty for none): "
-  read apt_packages
+  read -e apt_packages
   add-field "apt_packages" "\"$apt_packages\""
 
   echo -ne "Enter all the required snap packages, separated by spaces(leave empty for none): "
-  read snap_packages
+  read -e snap_packages
   add-field "snap_packages" "\"$snap_packages\""
 
   add-field "files" "[]"
@@ -42,7 +42,7 @@ create-package () {
   while true;
   do
     echo -ne "Do you want to migrate a file/directory [y/N]?: "
-    read yN
+    read -e yN
 
     case $yN in
       [yY][eE][sS]|[yY])
