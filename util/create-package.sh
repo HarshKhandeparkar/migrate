@@ -14,16 +14,18 @@ create-package () {
   touch $main_json
   echo '{}' > $main_json
   echo '{}' > $working_json
+  cp $0 $working_dir # Put a copy of migrate
 
+  echo $0
   add-field 'version' 1
-  
-  echo -ne "Enter any extra apt repositories/ppas that are required, separated by spaces(leave empty for none): "
-  read apt_repos
-  add-field "apt_repos" "\"$apt_repos\""
 
   echo -ne "What is the name of the migrate package?: "
   read name
   add-field "name" "\"$name\""
+
+  echo -ne "Enter any extra apt repositories/ppas that are required, separated by spaces(leave empty for none): "
+  read apt_repos
+  add-field "apt_repos" "\"$apt_repos\""
 
   echo -ne "Enter all the required apt packages, separated by spaces(leave empty for none): "
   read apt_packages
@@ -60,7 +62,6 @@ create-package () {
     path=$(echo "$(cd "$(dirname $path)"; pwd)/$(basename "$path")")
 
     mkdir $working_dir/files/$i
-    echo $path $working_dir/files/$i/
     cp -r $path $working_dir/files/$i/
     path=$(echo $path | sed "s+$HOME+\$HOME+")
 
@@ -71,6 +72,9 @@ create-package () {
   jq . $main_json
   ls -r $working_dir
 
-  rm -rf $working_dir
-  rm $working_json
+  # Create the package archive
+  main_dir=$(pwd)
+  pushd $working_dir
+  tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz .
+  popd
 }
