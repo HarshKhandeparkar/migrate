@@ -62,7 +62,7 @@ create-package () {
     path=$(echo "$(cd "$(dirname $path)"; pwd)/$(basename "$path")")
 
     mkdir $working_dir/files/$i
-    cp -r $path $working_dir/files/$i/
+    rsync -ar $path $working_dir/files/$i/
     path=$(echo $path | sed "s+$HOME+\$HOME+")
 
     add-field "files[$i]" "\"$path\""
