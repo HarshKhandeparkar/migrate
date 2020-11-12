@@ -22,7 +22,7 @@ install-package() {
   else
     echo -e "${RED_FLASH}apt not found, this feature only works for debian based distros.${NC}"
   fi
-  
+
   if [[ $(which snap) != "" ]];
   then
     echo "Installing snap packages"

@@ -54,7 +54,7 @@ create-package () {
         continue
         ;;
     esac
-    
+
     echo -ne "Type the path to the directory/file: "
     read -e path
 
