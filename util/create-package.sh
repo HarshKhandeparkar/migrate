@@ -70,13 +70,12 @@ create-package () {
   done
 
   jq . $main_json
-  ls -r $working_dir
 
   # Create the package archive
   main_dir=$(pwd)
-  pushd $working_dir
-  tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz .
-  popd
+  pushd $working_dir > /dev/null
+  tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz . > /dev/null
+  popd > /dev/null
 
   rm -rf $working_dir
 }
