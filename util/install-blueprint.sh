@@ -1,5 +1,5 @@
 #$1 - path
-install-package() {
+install-blueprint() {
   working_dir=$(mktemp -d)
 
   tar -zvxf "$1" -C $working_dir > /dev/null

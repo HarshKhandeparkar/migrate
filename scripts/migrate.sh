@@ -5,8 +5,8 @@ dir=$(dirname $0) # Directory of the script
 source $dir/../util/colors.sh
 source $dir/../util/metadata.sh
 source $dir/../util/log-error.sh
-source $dir/../util/create-package.sh
-source $dir/../util/install-package.sh
+source $dir/../util/create-blueprint.sh
+source $dir/../util/install-blueprint.sh
 #</external-scripts>#
 
 script="migrate"
@@ -15,8 +15,8 @@ desc="This Script is the main script of the Migrate project."
 options="\
     migrate => Displays this help page.
     migrate -h/--help => Displays this help page.
-    migrate -c/--create => Creates a new migrate package.
-    migrate -i/--install [path-package.tar.gz] => Install the specified migrate package.
+    migrate -c/--create => Creates a new migrate blueprint.
+    migrate -i/--install [path-blueprint.tar.gz] => Install the specified migrate blueprint.
 "
 
 if [ "$1" != "" ];
@@ -30,16 +30,16 @@ then
       ;;
 
     "--create" | "-c" )
-      create-package
+      create-blueprint
       exit 0
       ;;
 
     "--install" | "-i")
       if [[ $2 == "" ]];
       then
-        log-eror 'Package path not specified' 2
+        log-eror 'Blueprint path not specified' 2
       else
-        install-package "$2"
+        install-blueprint "$2"
       fi
       exit 0
       ;;

@@ -6,7 +6,7 @@ add-field () {
   cat $main_json > $working_json
 }
 
-create-package () {
+create-blueprint () {
   working_dir=$(mktemp -d)
   working_json=$(mktemp)
   main_json=$working_dir/migrate.json
@@ -19,7 +19,7 @@ create-package () {
   echo $0
   add-field 'version' 1
 
-  echo -ne "What is the name of the migrate package?: "
+  echo -ne "What is the name of the migrate blueprint?: "
   read -e name
   add-field "name" "\"$name\""
 
@@ -71,7 +71,7 @@ create-package () {
 
   jq . $main_json
 
-  # Create the package archive
+  # Create the blueprint archive
   main_dir=$(pwd)
   pushd $working_dir > /dev/null
   tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz . > /dev/null
