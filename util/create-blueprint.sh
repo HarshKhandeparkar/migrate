@@ -14,7 +14,6 @@ create-blueprint () {
   touch $main_json
   echo '{}' > $main_json
   echo '{}' > $working_json
-  cp $0 $working_dir # Put a copy of migrate
 
   echo $0
   add-field 'version' 1
