@@ -6,6 +6,21 @@ add-field () {
   cat $main_json > $working_json
 }
 
+filesAdded=0
+add-file() {
+  path="$1"
+
+  path=$(echo $path | sed "s+~+\$HOME+" | sed "s+\$HOME+$HOME+")
+  path=$(echo "$(cd "$(dirname $path)"; pwd)/$(basename "$path")")
+
+  mkdir $working_dir/files/$filesAdded
+  rsync -ar $path $working_dir/files/$filesAdded/
+  path=$(echo $path | sed "s+$HOME+\$HOME+")
+
+  add-field "files[$filesAdded]" "\"$path\""
+  filesAdded=$((filesAdded + 1))
+}
+
 create-blueprint () {
   working_dir=$(mktemp -d)
   working_json=$(mktemp)
@@ -56,17 +71,32 @@ create-blueprint () {
 
     echo -ne "Type the path to the directory/file: "
     read -e path
+    add-file "$path"
 
-    path=$(echo $path | sed "s+~+\$HOME+" | sed "s+\$HOME+$HOME+")
-    path=$(echo "$(cd "$(dirname $path)"; pwd)/$(basename "$path")")
-
-    mkdir $working_dir/files/$i
-    rsync -ar $path $working_dir/files/$i/
-    path=$(echo $path | sed "s+$HOME+\$HOME+")
-
-    add-field "files[$i]" "\"$path\""
-    i=$((i + 1))
   done
+
+  if [[ $(which gsettings) != "" ]];
+  then
+    echo -ne "GNOME Shell Found. Should the themes be migrated [y/N]?: "
+    read -e doMigrateGnomeThemes
+
+    case $doMigrateGnomeThemes in
+      [yY][eE][sS]|[yY])
+        echo -e "Migrating GNOME shell themes."
+
+        add-field '"gnome-settings"' "{
+          \"gtk-theme\": \"$(gsettings get org.gnome.desktop.interface gtk-theme)\",
+          \"icon-theme\": \"$(gsettings get org.gnome.desktop.interface icon-theme)\",
+          \"cursor-theme\": \"$(gsettings get org.gnome.desktop.interface cursor-theme)\",
+          \"sound-theme\": \"$(gsettings get org.gnome.desktop.sound theme-name)\"
+        }"
+
+        add-file "~/.themes"
+        add-file "/usr/share/themes"
+
+        ;;
+    esac
+  fi
 
   jq . $main_json
 
