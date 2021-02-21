@@ -62,4 +62,21 @@ install-blueprint() {
       i=$((i + 1))
     done
   fi
+
+  if [[ $(which gsettings) != "" ]];
+  then
+    echo -ne "GNOME Shell Found. Should the themes be migrated [y/N]?: "
+    read -e doMigrateGnomeThemes
+
+    case $doMigrateGnomeThemes in
+      [yY][eE][sS]|[yY])
+        echo -e "Migrating GNOME shell themes."
+
+        gsettings set org.gnome.desktop.interface gtk-theme "$(jq .'gnome-settings'.'gtk-theme' $working_dir/migrate.json)"
+        gsettings set org.gnome.desktop.interface icon-theme "$(jq .'gnome-settings'.'icon-theme' $working_dir/migrate.json)"
+        gsettings set org.gnome.desktop.interface cursor-theme "$(jq .'gnome-settings'.'cursor-theme' $working_dir/migrate.json)"
+        gsettings set org.gnome.desktop.sound theme-name "$(jq .'gnome-settings'.'sound-theme' $working_dir/migrate.json)"
+        ;;
+    esac
+  fi
 }
