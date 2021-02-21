@@ -90,7 +90,8 @@ create-blueprint () {
           \"gtk-theme\": \"$(gsettings get org.gnome.desktop.interface gtk-theme)\",
           \"icon-theme\": \"$(gsettings get org.gnome.desktop.interface icon-theme)\",
           \"cursor-theme\": \"$(gsettings get org.gnome.desktop.interface cursor-theme)\",
-          \"sound-theme\": \"$(gsettings get org.gnome.desktop.sound theme-name)\"
+          \"sound-theme\": \"$(gsettings get org.gnome.desktop.sound theme-name)\",
+          \"shell-theme\": \"$(gsettings get org.gnome.shell.extensions.user-theme name)\"
         }"
 
         add-file "~/.themes"

@@ -76,6 +76,7 @@ install-blueprint() {
         gsettings set org.gnome.desktop.interface icon-theme "$(jq .'gnome-settings'.'icon-theme' $working_dir/migrate.json)"
         gsettings set org.gnome.desktop.interface cursor-theme "$(jq .'gnome-settings'.'cursor-theme' $working_dir/migrate.json)"
         gsettings set org.gnome.desktop.sound theme-name "$(jq .'gnome-settings'.'sound-theme' $working_dir/migrate.json)"
+        gsettings set org.gnome.shell.extensions.user-theme name "$(jq .'gnome-settings'.'shell-theme' $working_dir/migrate.json)"
         ;;
     esac
   fi
