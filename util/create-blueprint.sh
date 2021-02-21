@@ -10,11 +10,12 @@ filesAdded=0
 add-file() {
   path="$1"
 
-  path=$(echo $path | sed "s+~+\$HOME+" | sed "s+\$HOME+$HOME+")
-  path=$(echo "$(cd "$(dirname $path)"; pwd)/$(basename "$path")")
+  path=$(echo $path | sed "s+~+\$HOME+")
+  fileName=$(basename "$path")
+  path=$(echo "$(cd "$(dirname $path)"; pwd)")
 
   mkdir $working_dir/files/$filesAdded
-  rsync -ar $path $working_dir/files/$filesAdded/
+  sudo rsync -rlptD "$path/$fileName" $working_dir/files/$filesAdded/
   path=$(echo $path | sed "s+$HOME+\$HOME+")
 
   add-field "files[$filesAdded]" "\"$path\""
@@ -69,10 +70,11 @@ create-blueprint () {
         ;;
     esac
 
+    sudo echo -n ""
+
     echo -ne "Type the path to the directory/file: "
     read -e path
     add-file "$path"
-
   done
 
   if [[ $(which gsettings) != "" ]];
@@ -93,7 +95,6 @@ create-blueprint () {
 
         add-file "~/.themes"
         add-file "/usr/share/themes"
-
         ;;
     esac
   fi
