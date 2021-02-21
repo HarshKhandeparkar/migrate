@@ -10,7 +10,7 @@ filesAdded=0
 add-file() {
   path="$1"
 
-  path=$(echo $path | sed "s+~+\$HOME+")
+  path=$(echo $path | sed "s+~+\$HOME+" | sed "s+\$HOME+$HOME+")
   fileName=$(basename "$path")
   path=$(echo "$(cd "$(dirname $path)"; pwd)")
 
@@ -107,5 +107,5 @@ create-blueprint () {
   tar -czvf $main_dir/$(echo $name | sed "s/ /\-/").tar.gz . > /dev/null
   popd > /dev/null
 
-  rm -rf $working_dir
+  sudo rm -rf $working_dir
 }
