@@ -69,6 +69,3 @@ You can install the scripts using the following command in the directory where t
 ```bash
 cp ./concat/* $HOME/bin/
 ```
-
-
-> Open Source By Harsh Khandeparkar
